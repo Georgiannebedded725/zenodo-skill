@@ -1,5 +1,7 @@
 # zenodo-skill
 
+English | [中文](README_CN.md)
+
 A Claude Code / OpenClaw skill for the [Zenodo REST API](https://developers.zenodo.org). Deposit, publish, version, and search research artifacts on Zenodo — and get a citable DOI for every release.
 
 ## Features
