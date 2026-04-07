@@ -1,8 +1,10 @@
 ---
 name: zenodo-skill
 description: Use whenever the user mentions Zenodo, depositing or publishing research artifacts (datasets, software, papers, posters) to Zenodo, minting a DOI for a dataset/code release, uploading files to a Zenodo record, creating a new version of a Zenodo deposit, or searching Zenodo records. Covers the full Zenodo REST API workflow — create deposition, upload files via the bucket API, set metadata, publish, version, and search — for both production (zenodo.org) and sandbox (sandbox.zenodo.org).
+license: MIT
 homepage: https://github.com/Agents365-ai/zenodo-skill
-metadata: {"openclaw":{"requires":{"bins":["curl"],"env":["ZENODO_TOKEN"]},"emoji":"📦"}}
+platforms: [macos, linux, windows]
+metadata: {"openclaw":{"requires":{"bins":["curl"],"env":["ZENODO_TOKEN"]},"emoji":"📦","os":["darwin","linux","win32"]},"hermes":{"tags":["zenodo","doi","dataset","research-data","open-science","preprint","publishing"],"category":"research","requires_tools":["curl"],"related_skills":["zotero-manager","semanticscholar-skill"]},"author":"Agents365-ai","version":"1.0.0"}
 ---
 
 # Zenodo Skill
